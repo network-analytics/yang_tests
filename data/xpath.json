@@ -1,0 +1,7 @@
+
+{
+  "schema-test:system": {
+    "hostname": "routerX",
+    "port": 22
+  }
+}

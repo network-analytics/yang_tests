@@ -1,0 +1,18 @@
+
+module nmda-test {
+  yang-version 1.1;
+  namespace "urn:nmda:test";
+  prefix nm;
+
+  container system {
+    leaf hostname {
+      type string;
+      config true;
+    }
+
+    leaf uptime {
+      type uint32;
+      config false;
+    }
+  }
+}

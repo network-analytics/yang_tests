@@ -1,0 +1,10 @@
+
+{
+  "anydata-test:root": {
+    "payload": {
+      "example:system": {
+        "hostname": "routerX"
+      }
+    }
+  }
+}

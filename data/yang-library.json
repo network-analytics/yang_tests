@@ -1,0 +1,198 @@
+{
+  "ietf-yang-library:yang-library": {
+    "module-set": [
+      {
+        "name": "complete",
+        "module": [
+          {
+            "name": "ietf-telemetry-message",
+            "revision": "2025-10-19",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-telemetry-message",
+            "feature": [
+              "network-node-manifest",
+              "data-collection-manifest"
+            ]
+          },
+          {
+            "name": "ietf-yang-push-telemetry-message",
+            "revision": "2025-10-19",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-push-telemetry-message"
+          },
+          {
+            "name": "ietf-yang-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
+          },
+          {
+            "name": "ietf-inet-types",
+            "revision": "2021-02-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types"
+          },
+          {
+            "name": "ietf-platform-manifest",
+            "revision": "2025-02-21",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-platform-manifest"
+          },
+          {
+            "name": "ietf-yang-structure-ext",
+            "revision": "2020-06-17",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-structure-ext"
+          },
+          {
+            "name": "ietf-subscribed-notifications",
+            "revision": "2019-09-09",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications",
+            "feature": [
+              "encode-json",
+              "encode-xml",
+              "configured",
+              "subtree",
+              "xpath"
+            ]
+          },
+          {
+            "name": "ietf-yang-push",
+            "revision": "2019-09-09",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-push",
+            "feature": [
+              "on-change"
+            ]
+          },
+          {
+            "name": "ietf-datastores",
+            "revision": "2018-02-14",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores"
+          },
+          {
+            "name": "ietf-yang-revisions",
+            "revision": "2024-06-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-revisions"
+          },
+          {
+            "name": "ietf-yang-semver",
+            "revision": "2024-07-02",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-semver"
+          },
+          {
+            "name": "ietf-yang-library",
+            "revision": "2019-01-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library"
+          },
+          {
+            "name": "ietf-interfaces",
+            "revision": "2018-02-20",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+            "feature": ["if-mib"]
+          },
+          {
+            "name": "ietf-netconf-acm",
+            "revision": "2018-02-14",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm"
+          },
+          {
+            "name": "ietf-network-instance",
+            "revision": "2019-01-21",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-network-instance"
+          },
+          {
+            "name": "ietf-restconf",
+            "revision": "2017-01-26",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf"
+          },
+          {
+            "name": "ietf-yang-patch",
+            "revision": "2017-02-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-patch"
+          },
+          {
+            "name": "ietf-ip",
+            "revision": "2018-02-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-ip"
+          },
+          {
+            "name": "ietf-yang-schema-mount",
+            "revision": "2019-01-14",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-schema-mount"
+          },
+          {
+            "name": "ietf-yp-notification",
+            "revision": "2025-02-24",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yp-notification"
+          },
+          {
+            "name": "ietf-system-capabilities",
+            "revision": "2022-02-17",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-system-capabilities"
+          },
+          {
+            "name": "ietf-notification-capabilities",
+            "revision": "2022-02-17",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-notification-capabilities"
+          },
+          {
+            "name": "ietf-udp-notif-transport",
+            "revision": "2025-02-14",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"
+          },
+          {
+            "name": "ietf-subscribed-notif-receivers",
+            "revision": "2024-02-01",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"
+          },
+          {
+            "name": "ietf-udp-client",
+            "revision": "2025-02-24",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-udp-client"
+          },
+          {
+            "name": "ietf-tls-client",
+            "revision": "2024-10-10",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-tls-client"
+          },
+          {
+            "name": "iana-if-type",
+            "revision": "2014-05-08",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type"
+          },
+          {
+            "name": "ietf-crypto-types",
+            "revision": "2024-10-10",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-crypto-types"
+          },
+          {
+            "name": "ietf-truststore",
+            "revision": "2024-10-10",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-truststore"
+          },
+          {
+            "name": "ietf-keystore",
+            "revision": "2024-10-10",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-keystore"
+          },
+          {
+            "name": "ietf-tls-common",
+            "revision": "2024-10-10",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-tls-common"
+          },
+          {
+            "name": "iana-tls-cipher-suite-algs",
+            "revision": "2024-10-16",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-tls-cipher-suite-algs"
+          }
+        ]
+      }
+    ],
+    "schema": [
+      {
+        "name": "complete",
+        "module-set": [
+          "complete"
+        ]
+      }
+    ],
+    "content-id": "34"
+  },
+  "ietf-yang-library:modules-state": {
+    "module-set-id": "34"
+  }
+}

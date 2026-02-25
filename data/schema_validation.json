@@ -1,0 +1,7 @@
+
+{
+  "schema-test:system": {
+    "hostname": "router1",
+    "port": 830
+  }
+}

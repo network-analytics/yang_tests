@@ -1,0 +1,6 @@
+{
+  "nmda-test:system": {
+    "hostname": "router1",
+    "uptime": 12345
+  }
+}
