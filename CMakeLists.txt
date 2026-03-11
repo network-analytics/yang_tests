@@ -22,7 +22,7 @@ link_directories(
 add_library(utils src/utils.c)
 target_link_libraries(utils ${LIBYANG_LIBRARIES})
 
-add_executable(test_full_battery tests/test_full_battery.c)
+add_executable(test_full_battery tests/test_libyang.c)
 target_link_libraries(test_full_battery utils ${LIBYANG_LIBRARIES} ${CMOCKA_LIBRARIES})
 
 enable_testing()
