@@ -6,6 +6,8 @@
 
 static struct ly_ctx* ctx;
 
+// TODO move to yanglint instead of libyang direct use
+
 static int setup(void** state) {
   /* Create empty context */
   if (ly_ctx_new(NULL, 0, &ctx) != LY_SUCCESS) {
