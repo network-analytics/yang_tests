@@ -4,7 +4,7 @@
 ```
 mkdir build
 cd build
-cmake ..
+cmake ../libyang
 cmake --build .
 ctest -R libyang_full_battery -V
 ```
