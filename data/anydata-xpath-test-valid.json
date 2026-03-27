@@ -1,0 +1,15 @@
+{
+    "data": {
+        "xpath-test:anydata-container": {
+            "child-container": {
+                "value1": "value",
+                "payload": {
+                    "schema-test:system": {
+                        "hostname": "router1",
+                        "port": 830
+                    }
+                }
+            }
+        }
+    }
+}

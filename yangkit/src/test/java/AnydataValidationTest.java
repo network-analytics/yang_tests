@@ -25,7 +25,7 @@ public class AnydataValidationTest {
     }
 
     @Test
-    void testObjectWithShemaAnydata() throws DocumentException, IOException, YangParserException {
+    void testObjectWithSchemaAnydata() throws DocumentException, IOException, YangParserException {
         YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/anydata");
         JsonNode validData = YangkitUtils.loadJson("../data/object-with-schema-anydata.json");
         ValidatorResult schemaValidation = YangkitUtils.validateSchema(schemaContext);
@@ -37,7 +37,7 @@ public class AnydataValidationTest {
     }
 
     @Test
-    void testObjectWithoutShemaAnydata() throws DocumentException, IOException, YangParserException {
+    void testObjectWithoutSchemaAnydata() throws DocumentException, IOException, YangParserException {
         YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/anydata");
         JsonNode validData = YangkitUtils.loadJson("../data/object-without-schema-anydata.json");
         ValidatorResult schemaValidation = YangkitUtils.validateSchema(schemaContext);
