@@ -15,15 +15,12 @@ public class XPathExtractionTest {
     void minimalXpathTest() throws Exception {
         YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/xpath");
         JsonNode validData = YangkitUtils.loadJson("../data/xpath-test-valid.json");
-        schemaContext.validate();
+        assertTrue(schemaContext.validate().isOk());
 
         ValidatorResultBuilder validatorResultBuilder = new ValidatorResultBuilder();
         YangDataDocument doc =
                 new YangDataDocumentJsonParser(schemaContext)
                         .parse(validData, validatorResultBuilder);
-
-        YangkitUtils.getTree(doc.getDataChild(YangkitUtils.getIdentifier("urn:xpath:test","top-container")),"");
-
 
         YangXPathImpl xpath = new YangXPathImpl("/xt:top-container/xt:child-container/xt:value1");
         xpath.addNamespace("xt", "urn:xpath:test");
@@ -34,7 +31,7 @@ public class XPathExtractionTest {
 
     @Test
     void anydataXpathTest() throws Exception {
-        YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/xpath-anydata");
+        YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/xpath");
         JsonNode validData = YangkitUtils.loadJson("../data/anydata-xpath-test-valid.json");
         schemaContext.validate();
 
