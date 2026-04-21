@@ -59,14 +59,13 @@ public class YangTransformationTest {
         var data = new YangDataValueStringImpl<Integer>(schemaNode, "3");
         leafNode.setValue(data);
 
-
+        System.out.println("=== Parsed JSON ===");
         YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
 
         var container = (ContainerDataImpl) doc.getDataChild(YangkitUtils.getIdentifier("urn:yang:transformation", "foo"));
 
         container.addChild(leafNode);
 
-        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
 
 
         doc.validate();
@@ -77,6 +76,9 @@ public class YangTransformationTest {
 
         String value = xpath.stringValueOf(doc.getDataChild(YangkitUtils.getIdentifier("urn:yang:transformation", "foo")));
         assertEquals("3", value);
+
+        System.out.println("=== DataTree after update ===");
+        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
     }
 
 }
