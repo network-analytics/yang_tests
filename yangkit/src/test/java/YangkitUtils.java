@@ -79,8 +79,7 @@ public final class YangkitUtils {
         return new SingleInstanceDataIdentifier(qname);
     }
 
-    public static void debugDependencyTest() throws DocumentException, IOException, YangParserException {
-        YangSchemaContext schemaContext = YangkitUtils.loadSchema("../yang/yangpush");
+    public static void debugDependencyTest(YangSchemaContext schemaContext) throws DocumentException, IOException, YangParserException {
         var validation = schemaContext.validate();
         for(var r : validation.getRecords()){
             if(r.getSeverity().toString().equals("ERROR")){
