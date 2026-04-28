@@ -6,6 +6,7 @@ import org.yangcentral.yangkit.common.api.validate.ValidatorResult;
 import org.yangcentral.yangkit.common.api.validate.ValidatorResultBuilder;
 import org.yangcentral.yangkit.data.api.model.LeafData;
 import org.yangcentral.yangkit.data.api.model.YangDataDocument;
+import org.yangcentral.yangkit.data.codec.json.NotificationMessageJsonCodec;
 import org.yangcentral.yangkit.data.codec.json.YangDataDocumentJsonParser;
 import org.yangcentral.yangkit.data.impl.model.LeafDataImpl;
 import org.yangcentral.yangkit.data.impl.model.SingleInstanceDataIdentifier;

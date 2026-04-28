@@ -67,7 +67,7 @@
     "telemetry-message-metadata": {
       "notification-event": "log",
       "session-protocol": "yang-push",
-      "collection-timestamp": "2025-10-31 11:30:15.324895",
+      "collection-timestamp": "2025-10-31T11:30:15.324895Z",
       "export-address": "71.19.157.107",
       "export-port": 31513,
       "ietf-yang-push-telemetry-message:yang-push-subscription": {
@@ -82,7 +82,7 @@
           }
         ],
         "ietf-yang-push-revision:yang-library-content-id":"6d13bafd8fd1dc21aa8932d1199b369794881393",
-        "encoding": "encode-json",
+        "encoding": "ietf-subscribed-notifications:encode-json",
         "ietf-yang-push:periodic": {
           "period": 3000,
           "anchor-time": "2025-01-01T00:00:30+00:00"

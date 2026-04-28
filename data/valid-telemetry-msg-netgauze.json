@@ -22,7 +22,7 @@
         "encoding": "ietf-subscribed-notifications:encode-json",
         "module": [
           {
-            "module": "ietf-interfaces",
+            "name": "ietf-interfaces",
             "revision": "2018-02-20",
             "version": "2.0.0"
           }
