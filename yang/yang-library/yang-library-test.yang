@@ -1,0 +1,23 @@
+module yang-library-test {
+  yang-version 1.1;
+  namespace "urn:test:yang-library";
+  prefix ylt;
+
+  container modules-state {
+    list module {
+      key "name";
+
+      leaf name {
+        type string;
+      }
+
+      leaf revision {
+        type string;
+      }
+
+      leaf-list feature {
+        type string;
+      }
+    }
+  }
+}

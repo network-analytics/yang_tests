@@ -1,0 +1,10 @@
+{
+  "yang-library-test:modules-state": {
+    "module": [
+      {
+        "name": "feature-test",
+        "revision": "2026-04-29"
+      }
+    ]
+  }
+}
