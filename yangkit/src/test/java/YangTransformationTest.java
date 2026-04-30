@@ -64,6 +64,7 @@ public class YangTransformationTest {
         YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
     }
 
+    // cannot use yangkit to update data
     @Test
     void updateValueTest() throws Exception {
         YangSchemaContext context = YangkitUtils.loadValidSchema("../yang/yang-transformation");

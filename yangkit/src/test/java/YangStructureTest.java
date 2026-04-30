@@ -40,6 +40,7 @@ public class YangStructureTest {
                 "../data/structure/scotthuang_invalid_structure_missing_mandatory.json");
     }
 
+    // yangkit does not throw error
     @Test
     void testInvalidStructureTopLevelPrefix() throws Exception {
         YangkitUtils.loadInvalidYangDataDocParseError("../yang/scotthuang-structure",

@@ -1,17 +1,12 @@
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dom4j.DocumentException;
 import org.junit.jupiter.api.Test;
-import org.yangcentral.yangkit.common.api.validate.ValidatorResult;
-import org.yangcentral.yangkit.model.api.schema.YangSchemaContext;
 import org.yangcentral.yangkit.parser.YangParserException;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class YangAnydataStructureTest {
 
+    // primitive type should not be allowed in anydata
     @Test
     void testPrimitiveTypeAnydataInStructure() throws DocumentException, IOException, YangParserException {
         YangkitUtils.loadInvalidYangDataDocParseError("../yang/anydata-in-structure",
@@ -38,7 +33,7 @@ public class YangAnydataStructureTest {
 
     @Test
     void testArrayAnydataInStructure() throws DocumentException, IOException, YangParserException {
-        YangkitUtils.loadValidYangDataDoc("../yang/anydata-in-structure",
+        YangkitUtils.loadInvalidYangDataDocParseError("../yang/anydata-in-structure",
                 "../data/anydata-in-structure/array-anydata-in-structure.json");
     }
 
