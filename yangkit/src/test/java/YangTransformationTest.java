@@ -1,27 +1,17 @@
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.yangcentral.yangkit.common.api.AbsolutePath;
-import org.yangcentral.yangkit.common.api.NamespaceContextDom4j;
 import org.yangcentral.yangkit.common.api.QName;
 import org.yangcentral.yangkit.common.api.XPathStep;
-import org.yangcentral.yangkit.common.api.validate.ValidatorResult;
-import org.yangcentral.yangkit.common.api.validate.ValidatorResultBuilder;
 import org.yangcentral.yangkit.data.api.model.YangDataDocument;
-import org.yangcentral.yangkit.data.codec.json.YangDataDocumentJsonParser;
 import org.yangcentral.yangkit.data.impl.model.ContainerDataImpl;
 import org.yangcentral.yangkit.data.impl.model.LeafDataImpl;
 import org.yangcentral.yangkit.data.impl.model.YangDataValueStringImpl;
 import org.yangcentral.yangkit.model.api.schema.YangSchemaContext;
 import org.yangcentral.yangkit.model.impl.stmt.LeafImpl;
-import org.yangcentral.yangkit.model.impl.stmt.TypeImpl;
 import org.yangcentral.yangkit.model.impl.stmt.TypedDataNodeImpl;
 import org.yangcentral.yangkit.xpath.impl.YangXPathImpl;
 
-import java.net.URI;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class YangTransformationTest {
 

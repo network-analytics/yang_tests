@@ -18,11 +18,9 @@ public class ModuleInspectionTest {
 
         var parser = factory.createParser();
 
-        var f = Paths.get("../yang/schema-test.yang").toAbsolutePath();
+        var f = Paths.get("../yang/schema-validation/valid-schema-test.yang").toAbsolutePath();
         parser.addSource(new FileYangTextSource(f));
         String namespace = parser.buildDeclaredModel().getFirst().declaredSubstatements().get(1).argument().toString();
-        assertEquals("urn:schema:test", namespace);
-
-
+        assertEquals("urn:valid-schema-test", namespace);
     }
 }
