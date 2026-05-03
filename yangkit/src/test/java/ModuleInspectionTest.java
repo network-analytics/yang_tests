@@ -1,21 +1,14 @@
-import org.dom4j.DocumentException;
 import org.junit.jupiter.api.Test;
 import org.yangcentral.yangkit.base.YangBuiltinKeyword;
 import org.yangcentral.yangkit.base.YangElement;
-import org.yangcentral.yangkit.common.api.QName;
-import org.yangcentral.yangkit.common.api.validate.ValidatorResult;
-import org.yangcentral.yangkit.model.api.schema.YangSchemaContext;
 import org.yangcentral.yangkit.model.api.stmt.Module;
 import org.yangcentral.yangkit.model.api.stmt.YangStatement;
 import org.yangcentral.yangkit.parser.YangParser;
 import org.yangcentral.yangkit.parser.YangParserEnv;
 import org.yangcentral.yangkit.parser.YangParserException;
-import org.yangcentral.yangkit.parser.YangYinParser;
 import org.yangcentral.yangkit.register.YangStatementImplRegister;
-import org.yangcentral.yangkit.xpath.impl.YangXPathImpl;
 
 // TODO: Heng - there're unused imports, it would be great to clean them up.
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

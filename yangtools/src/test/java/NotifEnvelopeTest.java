@@ -1,64 +1,20 @@
-import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
-import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
-import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
-import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
-import org.opendaylight.yangtools.yang.data.impl.schema.NormalizationResultHolder;
-import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
-
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class NotifEnvelopeTest {
 
     @Test
     void testValidNotifEnvelope() throws Exception {
-        EffectiveModelContext schema = YangToolsUtils.loadSchema("../yang/notif");
-        assertNotNull(schema);
-
-        NormalizationResultHolder resultHolder = new NormalizationResultHolder();
-        var writer = ImmutableNormalizedNodeStreamWriter.from(resultHolder);
-
-        var parser = JsonParserStream.create(
-                writer,
-                JSONCodecFactorySupplier.RFC7951.getShared(schema)
+        YangToolsUtils.loadValidNormalizedNode(
+                "../yang/notif",
+                "../data/notif/valid-notification.json"
         );
-
-        assertDoesNotThrow(() -> {
-            try (JsonReader reader = new JsonReader(
-                    new InputStreamReader(
-                            Files.newInputStream(Paths.get("../data/valid_notification.json"))
-                    ))) {
-                parser.parse(reader);
-            }
-        });
-
     }
 
     @Test
     void testInvalidNotifEnvelope() throws Exception {
-        EffectiveModelContext schema = YangToolsUtils.loadSchema("../yang/notif");
-        assertNotNull(schema);
-
-        NormalizationResultHolder resultHolder = new NormalizationResultHolder();
-        var writer = ImmutableNormalizedNodeStreamWriter.from(resultHolder);
-
-        var parser = JsonParserStream.create(
-                writer,
-                JSONCodecFactorySupplier.RFC7951.getShared(schema)
+        YangToolsUtils.loadInvalidNormalizedNodeParseError(
+                "../yang/notif",
+                "../data/notif/invalid-notification.json"
         );
-
-        assertThrows(Exception.class, () -> {
-            try (JsonReader reader = new JsonReader(
-                    new InputStreamReader(
-                            Files.newInputStream(Paths.get("../data/invalid_notification.json"))
-                    ))) {
-                parser.parse(reader);
-            }
-        });
-
     }
 }
