@@ -1,3 +1,4 @@
 *.log
 /yang/netgauze-messagebroker-consumer-yang
 /yang/netgauze-yangpush-receiver-yang
+/data/ciena-messagebroker-consumer

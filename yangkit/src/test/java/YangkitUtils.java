@@ -24,19 +24,20 @@ public final class YangkitUtils {
 
     public static boolean DEBUG = true;
 
-    private static void debugValidatorResult(ValidatorResult result) {
+    private static void debugValidatorResult(ValidatorResult result, String title) {
         if (!DEBUG) return;
         if (result.getRecords() == null) return;
-        if (result.getRecords().isEmpty()) {
-            System.out.println("Validator result is empty");
-        } else {
-
-            for (var r : result.getRecords()) {
-                if (r.getSeverity().toString().equals("ERROR")) {
-                    System.out.println(r.getBadElement() + " " + r.getErrorMsg().getMessage());
-                }
+        if (result.getRecords().isEmpty()) return;
+        System.out.println("----------------------------");
+        System.out.println(title);
+        System.out.println("----------------------------");
+        for (var r : result.getRecords()) {
+            if (r.getSeverity().toString().equals("ERROR")) {
+                //System.out.println(r.getBadElement() + " " + r.getErrorMsg().getMessage());
+                System.out.println(r);
             }
         }
+        System.out.println();
     }
 
     public static YangSchemaContext loadValidSchema(String yangFiles) throws DocumentException, IOException, YangParserException {
@@ -47,6 +48,18 @@ public final class YangkitUtils {
         return loadSchema(yangFiles, true);
     }
 
+    public static YangSchemaContext loadSchemaSkipValidation(String yangFiles) {
+        var f = Paths.get(yangFiles).toAbsolutePath();
+        YangSchemaContext context = null;
+        try {
+            context = YangYinParser.parse(f.toFile());
+            context.validate();
+        } catch (IOException | YangParserException | DocumentException ignored) {
+        }
+
+        return context;
+    }
+
     public static YangSchemaContext loadSchema(String yangFiles, boolean expectError) throws DocumentException, IOException, YangParserException {
         var f = Paths.get(yangFiles).toAbsolutePath();
         YangSchemaContext context = null;
@@ -54,7 +67,7 @@ public final class YangkitUtils {
         try {
             context = YangYinParser.parse(f.toFile());
             var validatorResult = context.validate();
-            debugValidatorResult(validatorResult);
+            debugValidatorResult(validatorResult, "schema");
             getError = !validatorResult.isOk();
         } catch (IOException | YangParserException | DocumentException ignored) {
             getError = true;
@@ -88,6 +101,11 @@ public final class YangkitUtils {
 
     public static YangDataDocument loadInvalidYangDataDocValidateError(String yangFiles, String jsonFile) throws DocumentException, IOException, YangParserException {
         return loadYangDataDoc(yangFiles, jsonFile, false, true);
+    }
+
+    public static YangDataDocument loadYangDataDocSkipSchemaValidation(String yangFiles, String jsonFile) throws DocumentException, IOException, YangParserException {
+        YangSchemaContext context = loadSchemaSkipValidation(yangFiles);
+        return loadYangDataDoc(context, jsonFile, false, false);
     }
 
     public static YangDataDocument loadYangDataDoc(String yangFiles, String jsonFile,
@@ -133,7 +151,7 @@ public final class YangkitUtils {
             parseError = true;
         }
 
-        debugValidatorResult(parseValidatorError);
+        debugValidatorResult(parseValidatorError, "data parsing");
 
         assertEquals(expectErrorDuringParsing, parseError, expectErrorDuringParsing ?
                 "Expected error during parsing but no error" :
@@ -146,7 +164,7 @@ public final class YangkitUtils {
         doc.update();
         ValidatorResult validateValidatorError = doc.validate();
 
-        debugValidatorResult(validateValidatorError);
+        debugValidatorResult(validateValidatorError, "data validation");
         assertEquals(expectErrorDuringValidation, !validateValidatorError.isOk(), expectErrorDuringValidation ?
                 "Expected error during validation but no error" :
                 "Expected no error during validation but data is not valid");
