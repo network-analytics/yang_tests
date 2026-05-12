@@ -1,0 +1,25 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: testCase"
+"insa.benchmark.Benchmark.loadContext","avgt",1,5,98.565218,3.442790,"us/op",tc_00
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate","avgt",1,5,399.993781,14.015083,"MB/sec",tc_00
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate.norm","avgt",1,5,41345.549165,7.478265,"B/op",tc_00
+"insa.benchmark.Benchmark.loadContext:gc.count","avgt",1,5,7.000000,NaN,"counts",tc_00
+"insa.benchmark.Benchmark.loadContext:gc.time","avgt",1,5,3.000000,NaN,"ms",tc_00
+"insa.benchmark.Benchmark.loadContext","avgt",1,5,12180.139180,395.928818,"us/op",tc_01
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate","avgt",1,5,2284.178194,73.786047,"MB/sec",tc_01
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate.norm","avgt",1,5,29175957.468312,566.560952,"B/op",tc_01
+"insa.benchmark.Benchmark.loadContext:gc.count","avgt",1,5,39.000000,NaN,"counts",tc_01
+"insa.benchmark.Benchmark.loadContext:gc.time","avgt",1,5,26.000000,NaN,"ms",tc_01
+"insa.benchmark.Benchmark.loadContext","avgt",1,5,120047.351111,6367.006239,"us/op",tc_02
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate","avgt",1,5,2500.460889,132.019823,"MB/sec",tc_02
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate.norm","avgt",1,5,314757274.488889,15902.763506,"B/op",tc_02
+"insa.benchmark.Benchmark.loadContext:gc.count","avgt",1,5,20.000000,NaN,"counts",tc_02
+"insa.benchmark.Benchmark.loadContext:gc.time","avgt",1,5,87.000000,NaN,"ms",tc_02
+"insa.benchmark.Benchmark.loadContext","avgt",1,5,125440.647222,4076.731415,"us/op",tc_03
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate","avgt",1,5,2412.075480,77.861065,"MB/sec",tc_03
+"insa.benchmark.Benchmark.loadContext:gc.alloc.rate.norm","avgt",1,5,317299266.400000,28684.151930,"B/op",tc_03
+"insa.benchmark.Benchmark.loadContext:gc.count","avgt",1,5,22.000000,NaN,"counts",tc_03
+"insa.benchmark.Benchmark.loadContext:gc.time","avgt",1,5,30.000000,NaN,"ms",tc_03
+Benchmark.objectMemory,normal,1,1,5472,0,B,tc_00
+Benchmark.objectMemory,normal,1,1,4228176,0,B,tc_01
+Benchmark.objectMemory,normal,1,1,53088808,0,B,tc_02
+Benchmark.objectMemory,normal,1,1,53255232,0,B,tc_03
