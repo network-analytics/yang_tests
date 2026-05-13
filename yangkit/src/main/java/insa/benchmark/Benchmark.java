@@ -19,12 +19,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class Benchmark {
 
-    @Param({
-            "tc_00",
-            "tc_01",
-            "tc_02",
-            "tc_03"
-    })
+    @Param({"tc_linear_001"})
     public String testCase;
 
     private File moduleDirectory;
