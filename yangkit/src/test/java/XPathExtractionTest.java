@@ -36,7 +36,7 @@ public class XPathExtractionTest {
         xpath.addNamespace("st", "urn:schema:test");
 
         String value = xpath.stringValueOf(doc.getDataChild(YangkitUtils.getIdentifier("urn:xpath:test","anydata-container")));
-        // TODO: Heng - "value" returns "" instead of "router1", here return false?
+        // Yangkit limitation: XPath to a container returns null which - in theory - should be "router1"
          assertEquals("router1", value);
     }
 

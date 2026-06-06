@@ -591,7 +591,6 @@ module ietf-subscribed-notifications {
           type stream-ref {
             require-instance false;
           }
-          mandatory true;
           description
             "Indicates the event stream to be considered for
              this subscription.";
