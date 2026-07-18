@@ -1,0 +1,6 @@
+{
+  "application:application-root": {
+    "hostname": "router-1",
+    "port": 8080
+  }
+}

@@ -1,0 +1,25 @@
+module application {
+  yang-version 1.1;
+
+  namespace "urn:test:application";
+  prefix app;
+
+  import shared-types {
+    prefix st;
+    revision-date 2026-07-18;
+  }
+
+  revision 2026-07-18;
+
+  container application-root {
+    leaf hostname {
+      type string;
+      mandatory true;
+    }
+
+    leaf port {
+      type st:port-number;
+      mandatory true;
+    }
+  }
+}

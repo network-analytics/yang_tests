@@ -1,0 +1,5 @@
+{
+  "shared-types:shared-root": {
+    "internal-value": "should-not-be-accessible"
+  }
+}

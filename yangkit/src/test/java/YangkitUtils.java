@@ -10,6 +10,7 @@ import org.yangcentral.yangkit.data.impl.model.LeafDataImpl;
 import org.yangcentral.yangkit.data.impl.model.SingleInstanceDataIdentifier;
 import org.yangcentral.yangkit.model.api.codec.YangCodecException;
 import org.yangcentral.yangkit.model.api.schema.YangSchemaContext;
+import org.yangcentral.yangkit.model.api.stmt.Module;
 import org.yangcentral.yangkit.parser.YangParserException;
 import org.yangcentral.yangkit.parser.YangYinParser;
 
@@ -197,6 +198,129 @@ public final class YangkitUtils {
     public static SingleInstanceDataIdentifier getIdentifier(String namespace, String localName) {
         QName qname = new QName(namespace, localName);
         return new SingleInstanceDataIdentifier(qname);
+    }
+
+    public static YangSchemaContext loadValidSchemaWithImportOnly(
+            String yangFiles,
+            String importOnlyModuleName
+    ) throws DocumentException, IOException, YangParserException {
+
+        return loadSchemaWithImportOnly(
+                yangFiles,
+                importOnlyModuleName,
+                null,
+                false
+        );
+    }
+
+    public static YangSchemaContext loadValidSchemaWithImportOnly(
+            String yangFiles,
+            String importOnlyModuleName,
+            String revision
+    ) throws DocumentException, IOException, YangParserException {
+
+        return loadSchemaWithImportOnly(
+                yangFiles,
+                importOnlyModuleName,
+                revision,
+                false
+        );
+    }
+
+    public static YangSchemaContext loadInvalidSchemaWithImportOnly(
+            String yangFiles,
+            String importOnlyModuleName
+    ) throws DocumentException, IOException, YangParserException {
+
+        return loadSchemaWithImportOnly(
+                yangFiles,
+                importOnlyModuleName,
+                null,
+                true
+        );
+    }
+
+    public static YangSchemaContext loadSchemaWithImportOnly(
+            String yangFiles,
+            String importOnlyModuleName,
+            String revision,
+            boolean expectError
+    ) throws DocumentException, IOException, YangParserException {
+
+        var path = Paths.get(yangFiles).toAbsolutePath();
+
+        YangSchemaContext context = null;
+        boolean getError;
+
+        try {
+            context = YangYinParser.parse(path.toFile());
+
+            moveModuleToImportOnly(
+                    context,
+                    importOnlyModuleName,
+                    revision
+            );
+
+            ValidatorResult validatorResult = context.validate();
+
+            debugValidatorResult(
+                    validatorResult,
+                    "schema with import-only module: " + importOnlyModuleName
+            );
+
+            getError = !validatorResult.isOk();
+
+        } catch (IOException | YangParserException | DocumentException e) {
+            getError = true;
+        }
+
+        if (!expectError) {
+            assertNotNull(context, "context is null");
+        }
+
+        assertEquals(
+                expectError,
+                getError,
+                expectError
+                        ? "Expected invalid schema but schema is valid"
+                        : "Expected valid schema but schema is not valid"
+        );
+
+        return context;
+    }
+
+    private static void moveModuleToImportOnly(
+            YangSchemaContext context,
+            String moduleName,
+            String revision
+    ) {
+        org.yangcentral.yangkit.model.api.stmt.Module module;
+
+        if (revision == null || revision.isBlank()) {
+            module = context
+                    .getLatestModule(moduleName)
+                    .orElseThrow();
+        } else {
+            module = context
+                    .getModule(moduleName, revision)
+                    .orElseThrow(() -> new IllegalArgumentException(
+                            "Module not found: "
+                                    + moduleName
+                                    + "@"
+                                    + revision
+                    ));
+        }
+
+        Module removedModule = context.removeModule(module.getModuleId());
+
+        if (removedModule == null) {
+            throw new IllegalStateException(
+                    "Unable to remove module before marking it import-only: "
+                            + module.getModuleId()
+            );
+        }
+
+        context.addImportOnlyModule(removedModule);
     }
 
 
