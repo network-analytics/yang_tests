@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.yangcentral.yangkit.base.YangContext;
 import org.yangcentral.yangkit.common.api.AbsolutePath;
 import org.yangcentral.yangkit.common.api.QName;
 import org.yangcentral.yangkit.common.api.XPathStep;
@@ -7,8 +8,10 @@ import org.yangcentral.yangkit.data.impl.model.ContainerDataImpl;
 import org.yangcentral.yangkit.data.impl.model.LeafDataImpl;
 import org.yangcentral.yangkit.data.impl.model.YangDataValueStringImpl;
 import org.yangcentral.yangkit.model.api.schema.YangSchemaContext;
-import org.yangcentral.yangkit.model.impl.stmt.LeafImpl;
-import org.yangcentral.yangkit.model.impl.stmt.TypedDataNodeImpl;
+import org.yangcentral.yangkit.model.api.stmt.SchemaNodeContainer;
+import org.yangcentral.yangkit.model.api.stmt.Type;
+import org.yangcentral.yangkit.model.api.stmt.YangStatement;
+import org.yangcentral.yangkit.model.impl.stmt.*;
 import org.yangcentral.yangkit.xpath.impl.YangXPathImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,14 +25,14 @@ public class YangTransformationTest {
                 "../data/yang-transformation/yang_transformation.json");
 
         AbsolutePath absolutePath = new AbsolutePath();
-        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation","foo")));
-        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation","num")));
+        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation", "foo")));
+        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation", "num")));
         var leaf = doc.getSchemaContext().getSchemaNode(absolutePath);
 
         var schemaNode = new LeafImpl("num");
         schemaNode.setContext(context.getModules().getFirst().getContext());
 
-        var type = ((TypedDataNodeImpl)leaf).getType();
+        var type = ((TypedDataNodeImpl) leaf).getType();
         schemaNode.setType(type);
 
         var leafNode = new LeafDataImpl<Integer>(schemaNode);
@@ -38,7 +41,7 @@ public class YangTransformationTest {
         leafNode.setValue(data);
 
         System.out.println("=== Parsed JSON ===");
-        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
+        YangkitUtils.getTree(doc.getDataChildren().getFirst(), " ");
 
         var container = (ContainerDataImpl) doc.getDataChild(YangkitUtils.getIdentifier("urn:yang:transformation", "foo"));
 
@@ -51,7 +54,7 @@ public class YangTransformationTest {
         assertEquals("3", value);
 
         System.out.println("=== DataTree after update ===");
-        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
+        YangkitUtils.getTree(doc.getDataChildren().getFirst(), " ");
     }
 
     // cannot use yangkit to update data
@@ -62,14 +65,14 @@ public class YangTransformationTest {
                 "../data/yang-transformation/yang_transformation.json");
 
         AbsolutePath absolutePath = new AbsolutePath();
-        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation","foo")));
-        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation","value-to-update")));
+        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation", "foo")));
+        absolutePath.addStep(new XPathStep(new QName("urn:yang:transformation", "value-to-update")));
         var leaf = doc.getSchemaContext().getSchemaNode(absolutePath);
 
         var schemaNode = new LeafImpl("value-to-update");
         schemaNode.setContext(context.getModules().getFirst().getContext());
 
-        var type = ((TypedDataNodeImpl)leaf).getType();
+        var type = ((TypedDataNodeImpl) leaf).getType();
         schemaNode.setType(type);
 
         var leafNode = new LeafDataImpl<Integer>(schemaNode);
@@ -78,7 +81,7 @@ public class YangTransformationTest {
         leafNode.setValue(data);
 
         System.out.println("=== Parsed JSON ===");
-        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
+        YangkitUtils.getTree(doc.getDataChildren().getFirst(), " ");
 
         var container = (ContainerDataImpl) doc.getDataChild(YangkitUtils.getIdentifier("urn:yang:transformation", "foo"));
 
@@ -91,7 +94,68 @@ public class YangTransformationTest {
         assertEquals("3", value);
 
         System.out.println("=== DataTree after update ===");
-        YangkitUtils.getTree(doc.getDataChildren().getFirst()," ");
+        YangkitUtils.getTree(doc.getDataChildren().getFirst(), " ");
+    }
+
+    @Test
+    void addSchemNode() throws Exception {
+        YangSchemaContext context =
+                YangkitUtils.loadValidSchema(
+                        "../yang/yang-transformation"
+                );
+
+        AbsolutePath fooPath = new AbsolutePath();
+        fooPath.addStep(
+                new XPathStep(
+                        new QName("urn:yang:transformation", "foo")
+                )
+        );
+
+        var fooNode = context.getSchemaNode(fooPath);
+
+        if (fooNode == null) {
+            throw new IllegalStateException(
+                    "Schema node /foo was not found"
+            );
+        }
+
+        if (!(fooNode instanceof SchemaNodeContainer fooContainer)) {
+            throw new IllegalStateException(
+                    "/foo cannot contain schema node children"
+            );
+        }
+
+        LeafImpl bar = new LeafImpl("bar");
+
+        bar.setContext(
+                new YangContext(fooNode.getContext())
+        );
+
+        TypeImpl stringType = new TypeImpl("string");
+
+        bar.addChild(stringType);
+
+        fooNode.addChild(bar);
+
+        bar.init();
+
+        fooContainer.addSchemaNodeChild(bar);
+
+        bar.build();
+        bar.validate();
+        bar.afterValidate();
+
+        YangDataDocument doc =
+                YangkitUtils.loadValidYangDataDoc(
+                        context,
+                        "../data/yang-transformation/"
+                                + "yang_transformation_ter.json"
+                );
+
+        YangkitUtils.getTree(
+                doc.getDataChildren().getFirst(),
+                " "
+        );
     }
 
 

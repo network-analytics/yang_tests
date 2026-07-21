@@ -1,0 +1,9 @@
+{
+  "data": {
+    "yang-transformation:foo": {
+      "val": "hello",
+      "value-to-update": 42,
+      "bar": "world"
+    }
+  }
+}
